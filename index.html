@@ -1,63 +1,25 @@
-<!DOCTYPE html>
-<html lang="mr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>आपली घंटागाडी - Tracking System</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Maps API (Replace YOUR_API_KEY) -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
-</head>
-<body>
+<!-- Visitor Entry Modal -->
+<div id="visitor-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h2>स्वागत आहे! (Welcome)</h2>
+        <p>तुमच्या भागातील घंटागाडी पाहण्यासाठी वॉर्ड क्रमांक टाका:</p>
+        <input type="text" id="visitor-ward-input" placeholder="उदा. 101, 102...">
+        <button onclick="findMyVehicle()" class="btn-search">माहिती मिळवा (Search)</button>
+    </div>
+</div>
 
-    <header>
-        <h1>महानगरपालिका: आपली घंटागाडी</h1>
-        <div id="live-clock"></div>
-    </header>
-
-    <main>
-        <!-- ADMIN PANEL: Manual Entry -->
-        <section id="admin-panel" class="card">
-            <h2>प्रशासकीय नियंत्रण (Admin Control)</h2>
-            <form id="vehicle-form">
-                <input type="text" id="wardNo" placeholder="वॉर्ड क्रमांक (Ward No)" required>
-                <input type="text" id="vehNo" placeholder="गाडी क्रमांक (Vehicle No)" required>
-                <input type="text" id="driverName" placeholder="चालकाचे नाव (Driver Name)" required>
-                <input type="tel" id="driverPhone" placeholder="संपर्क क्रमांक (Phone)" required>
-                <button type="submit" class="btn-add">अपडेट करा (Update)</button>
-            </form>
-        </section>
-
-        <!-- LIVE STATUS TABLE -->
-        <section id="status-board" class="card">
-            <h2>दैनिक वेळापत्रक आणि सद्यस्थिती</h2>
-            <table id="trackingTable">
-                <thead>
-                    <tr>
-                        <th>वॉर्ड</th>
-                        <th>गाडी क्रमांक</th>
-                        <th>चालकाचे नाव</th>
-                        <th>संपर्क</th>
-                        <th>स्थान (Location)</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body">
-                    <!-- Data will be injected here -->
-                </tbody>
-            </table>
-        </section>
-
-        <!-- HELP SECTION -->
-        <section id="help-section" class="card">
-            <h2>मदत व आपत्कालीन संपर्क (Help Section)</h2>
-            <div class="contact-grid">
-                <div class="contact-item"><strong>मुख्य स्वच्छता अधिकारी:</strong> +91 98XXX XXXXX</div>
-                <div class="contact-item"><strong>आरोग्य विभाग:</strong> 022-2XXXXXX</div>
-                <div class="contact-item"><strong>तक्रार निवारण:</strong> 1800-XXX-XXXX</div>
-            </div>
-        </section>
-    </main>
-
-    <script src="script.js"></script>
-</body>
-</html>
+<!-- Results Popup (Hidden by default) -->
+<div id="result-popup" class="modal-overlay" style="display:none;">
+    <div class="modal-content result-card">
+        <span class="close-btn" onclick="closeResult()">&times;</span>
+        <h2 id="display-ward">वॉर्ड: --</h2>
+        <div class="info-row"><strong>गाडी क्र:</strong> <span id="display-veh">--</span></div>
+        <div class="info-row"><strong>चालक:</strong> <span id="display-driver">--</span></div>
+        <div class="info-row"><strong>संपर्क:</strong> <a id="display-link" href="">संपर्क करा</a></div>
+        <hr>
+        <div id="map-container">
+            <!-- This will link to the live Google Map -->
+             <button id="live-map-btn" class="btn-map">📍 थेट लोकेशन पहा (Live Location)</button>
+        </div>
+    </div>
+</div>
