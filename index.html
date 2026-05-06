@@ -1,25 +1,80 @@
-<!-- Visitor Entry Modal -->
-<div id="visitor-modal" class="modal-overlay">
-    <div class="modal-content">
-        <h2>स्वागत आहे! (Welcome)</h2>
-        <p>तुमच्या भागातील घंटागाडी पाहण्यासाठी वॉर्ड क्रमांक टाका:</p>
-        <input type="text" id="visitor-ward-input" placeholder="उदा. 101, 102...">
-        <button onclick="findMyVehicle()" class="btn-search">माहिती मिळवा (Search)</button>
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>आपली घंटागाडी | स्वच्छ शहर, सुंदर शहर</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<!-- Results Popup (Hidden by default) -->
-<div id="result-popup" class="modal-overlay" style="display:none;">
-    <div class="modal-content result-card">
-        <span class="close-btn" onclick="closeResult()">&times;</span>
-        <h2 id="display-ward">वॉर्ड: --</h2>
-        <div class="info-row"><strong>गाडी क्र:</strong> <span id="display-veh">--</span></div>
-        <div class="info-row"><strong>चालक:</strong> <span id="display-driver">--</span></div>
-        <div class="info-row"><strong>संपर्क:</strong> <a id="display-link" href="">संपर्क करा</a></div>
-        <hr>
-        <div id="map-container">
-            <!-- This will link to the live Google Map -->
-             <button id="live-map-btn" class="btn-map">📍 थेट लोकेशन पहा (Live Location)</button>
+    <!-- Animated Background -->
+    <div class="bg-circles">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <i class="fas fa-truck-moving logo-icon"></i>
+            <h1>आपली घंटागाडी</h1>
+            <p>स्वच्छ प्रशासन, प्रगत तंत्रज्ञान</p>
+            <div id="live-clock"></div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Visitor Search Modal -->
+        <div id="visitor-modal" class="glass-card visitor-box">
+            <i class="fas fa-search-location search-icon"></i>
+            <h2>तुमची घंटागाडी शोधा</h2>
+            <div class="input-group">
+                <input type="text" id="visitor-ward-input" placeholder="वॉर्ड क्रमांक टाका...">
+                <button onclick="findMyVehicle()" class="btn-primary">शोध घ्या</button>
+            </div>
+        </div>
+
+        <!-- Admin Control (Initially Hidden or at Bottom) -->
+        <section id="admin-panel" class="glass-card">
+            <h3><i class="fas fa-user-shield"></i> प्रशासकीय डॅशबोर्ड</h3>
+            <form id="vehicle-form" class="admin-grid">
+                <input type="text" id="wardNo" placeholder="वॉर्ड क्र.">
+                <input type="text" id="vehNo" placeholder="गाडी क्र.">
+                <input type="text" id="driverName" placeholder="चालकाचे नाव">
+                <input type="tel" id="driverPhone" placeholder="संपर्क">
+                <button type="submit" class="btn-update">डेटा अपडेट करा</button>
+            </form>
+        </section>
+
+        <!-- Help Section -->
+        <section class="glass-card help-section">
+            <h3><i class="fas fa-headset"></i> आपत्कालीन मदत केंद्र</h3>
+            <div class="help-grid">
+                <div class="help-card"><i class="fas fa-phone"></i> <span>1800-XXX-XXXX</span></div>
+                <div class="help-card"><i class="fas fa-hospital"></i> <span>आरोग्य विभाग</span></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Result Popup Modal -->
+    <div id="result-popup" class="modal-overlay" style="display:none;">
+        <div class="glass-card result-popup-content">
+            <span class="close-btn" onclick="closeResult()">&times;</span>
+            <div class="status-badge">Live</div>
+            <h2 id="display-ward">वॉर्ड क्रमांक: --</h2>
+            <div class="vehicle-info">
+                <p><i class="fas fa-shuttle-van"></i> <span id="display-veh">--</span></p>
+                <p><i class="fas fa-user"></i> <span id="display-driver">--</span></p>
+                <p><i class="fas fa-phone-alt"></i> <a id="display-link" href="#">संपर्क करा</a></p>
+            </div>
+            <button id="live-map-btn" class="btn-map"><i class="fas fa-map-marker-alt"></i> लाइव्ह लोकेशन पहा</button>
         </div>
     </div>
-</div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
