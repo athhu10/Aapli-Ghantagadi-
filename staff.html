@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>कर्मचारी लॉगिन | आपली घंटागाडी</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-circles"><div class="circle1"></div></div>
+
+    <main class="container">
+        <div class="glass-card login-box">
+            <i class="fas fa-user-clock login-icon"></i>
+            <h2>कर्मचारी हजेरी (Staff Login)</h2>
+            
+            <div id="login-step-1">
+                <input type="text" id="staff-name" placeholder="पूर्ण नाव">
+                <input type="tel" id="staff-phone" placeholder="+91 मोबाईल नंबर">
+                <div id="recaptcha-container"></div> <!-- Firebase Security -->
+                <button onclick="sendOTP()" class="btn-primary">OTP पाठवा</button>
+            </div>
+
+            <div id="login-step-2" style="display:none;">
+                <p>तुमच्या नंबरवर आलेला OTP टाका:</p>
+                <input type="number" id="otp-input" placeholder="6 अंकी OTP">
+                <button onclick="verifyOTP()" class="btn-primary">हजेरी नोंदवा (Verify & Mark Attendance)</button>
+            </div>
+
+            <div id="attendance-success" style="display:none;">
+                <i class="fas fa-check-circle" style="color: #27ae60; font-size: 3rem;"></i>
+                <h3>हजेरी यशस्वी!</h3>
+                <p id="attendance-time"></p>
+                <button onclick="location.reload()" class="btn-update">Back</button>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="staff-logic.js"></script>
+</body>
+</html>
